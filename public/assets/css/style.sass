@@ -1,0 +1,71 @@
+//Mixin for Grid Column, Rows and Area
+@mixin grid ($columns, $rows, $area)
+  grid-template-columns: $columns
+  grid-template-rows: $rows
+  grid-template-areas: $area
+
+//Center Horizontally and Vertically Using grid
+@mixin grid_Vertical_Horizontal_Center
+  justify-self: center
+  align-self: center
+
+//Center Horizontally and Vertically Using CSS transform
+@mixin normal_Vertical_Horizontal_Center
+  // Remember to declare parent as postion: relative
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+//Set Height and Width to 100 vh vw
+@mixin view_Height_Width
+  height: 100vh
+  width: 100vw
+
+
+body
+  height: 100vh
+  padding: 0
+  margin: 0
+  display: grid
+  background: url("../img/burger.jpg")
+  background-repeat: no-repeat
+  background-size: cover
+  @include grid($columns:1fr , $rows: 50px 1fr 20px, $area: "headerSection" "middleSection" "footerSection")
+  grid-row-gap: 10px
+
+  .center
+    @include grid_Vertical_Horizontal_Center
+
+
+  #headerSection
+    grid-area: headerSection
+    background: rgba(255, 0, 0, 0.6)
+    text-align: center
+    color: white
+    position: relative
+    min-height: 100%
+    h2
+      margin: 0
+      @include normal_Vertical_Horizontal_Center
+
+  #middleSection
+    grid-area: middleSection
+    display: grid
+    @include grid($columns:1fr 1fr 1fr , $rows: 1fr, $area: "leftMiddle centerMiddle rightMiddle")
+    color: white
+    .leftMiddle
+      display: grid
+      grid-area: leftMiddle
+      border: 1px solid white
+    .centerMiddle
+      display: grid
+      grid-area: centerMiddle
+      border: 1px solid red
+    .rightMiddle
+      display: grid
+      grid-area: rightMiddle
+      border: 1px solid yellow
+
+  #footerSection
+    grid-area: footerSection
