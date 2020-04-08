@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="flex-container w-100 h-100 outer-container">
+    <div class="col-sm-3">
+      <img src="assets/img/burgerimg.png" style="max-width: 150px;" class="img-fluid" alt="Burger Img">
+      <h1>Eat Da Burger!</h1>
+      <div>
+        <p>Choose a Burger from the list. Then devour it. <br>
+          Don't see a burger you like? Enter a Burger of your choice to the list using the submit form below. The list
+          on the left keeps track of what you devoured.</p>
+
+      </div>
+      <form action="burger/create" method="POST">
+
+        <div class="form-group ">
+          <center><label for="new_burger" class="submitFont">Request a new burger!</label></center>
+          <textarea class="form-control" type="text" columns="6" rows="2" id="burger_name" required value=""
+            name="burger_name"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <center>
+          <button id="submit-button" type="submit" class="btn btn-danger" style="padding: 10px;">Make my
+            Burger!</button>
+        </center>
+
+      </form>
+    </div>
+    <div class="item open">
+      <div class="flex-container p-relative inner-box">
+        <header class="item flex-container">
+          <div class="item">
+            <i class="fa fa-lightbulb-o	" />
+          </div>
+          <div class="item">
+            <h4>Burgers Devoured</h4>
+          </div>
+          <div class="item">
+            <span>{{devouredBurgers.length}}</span>
+          </div>
+        </header>
+      </div>
+      <div class="item section">
+        {{#each devouredBurgers}}
+
+        <form action="burger/eat/{{id}}" method="POST">
+          <div class="todo flex-container">
+            <div class="todo-header item flex-container">
+              <div class="title item">
+                <h4>{{this.id}}. {{this.burger_name}}</h4>
+              </div>
+            </div>
+            <div class="todo-action item flex-container">
+              <button class="item btn purple" disabled type="submit">
+                Devour It!
+              </button>
+            </div>
+          </div>
+        </form>
+        {{/each}}
+
+      </div>
+    </div>
+    <div class="item inProgress">
+      <div class="flex-container p-relative inner-box">
+        <header class="item flex-container">
+          <div class="item">
+            <i class="fa fa-bar-chart-o	" />
+          </div>
+          <div class="item">
+            <h4>Burger Available</h4>
+          </div>
+          <div class="item">
+            <span>{{burgers.length}}</span>
+          </div>
+        </header>
+      </div>
+      <div class="item section">
+        {{#each burgers}}
+        <form action="burger/eat/{{id}}" method="POST">
+          {{!-- <div class="input-group">
+              <li class="form-control">{{id}}. {{burger_name}}</li>
+                <span class="input-group-btn">
+                  <button class="btn btn-success devour-button" type="submit">Devour It!</button>
+                </span>
+            </div> --}}
+          <div class="todo flex-container">
+            <div class="todo-header item flex-container">
+              <div class="title item">
+                <h4>{{id}}. {{burger_name}}</h4>
+              </div>
+            </div>
+            <div class="todo-action item flex-container">
+              <button class="item btn purple" type="submit">
+                Devour It!
+              </button>
+            </div>
+          </div>
+        </form>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
