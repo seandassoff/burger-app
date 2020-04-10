@@ -12,8 +12,14 @@ router.get("/", function (req, res) {
 // Index Page
 router.get("/index", function (req, res) {
   burger.selectAll(function (data) {
-    const burgers = data.filter((d) => !d.devoured);
-    const devouredBurgers = data.filter((d) => d.devoured);
+    const burgers = data
+      .filter((d) => !d.devoured)
+      .map((d, index) => ({ ...d, index: index + 1 }));
+    console.log("burgers", burgers);
+    const devouredBurgers = data
+      .filter((d) => d.devoured)
+      .map((d, index) => ({ ...d, index: index + 1 }));
+    console.log("devouredBurgers", devouredBurgers);
     var hbsObject = { burgers, devouredBurgers };
     //console.log(hbsObject);
     res.render("index", hbsObject);
