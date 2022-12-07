@@ -19,7 +19,7 @@
   "homepage": "https://github.com/roverkim/Eat-Da-Burger-Node-Express-Handlebars#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "express-handlebars": "^3.0.0",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0"
